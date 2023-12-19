@@ -6,7 +6,7 @@ const main = async (user) => {
     //conectarnos
     const pool = await getPool()
     //dar de alta
-    const sqlQuery = 'INSERT INTO user (email, password) VALUES (?, ?)'
+    const sqlQuery = 'INSERT INTO users (email, password) VALUES (?, ?)'
     const values = [user.email, user.password]
 
     const [response] = await pool.query(sqlQuery, values)
