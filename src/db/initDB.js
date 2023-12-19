@@ -3,7 +3,7 @@ import getPool from './getPool.js'
 const main = async () => {
   const pool = await getPool()
   console.log('Borrando tablas')
-  await pool.query('DROP TABLE IF EXISTS notes, users')
+  await pool.query('DROP TABLE IF EXISTS categories, notes, users')
 
   console.log('Creando tablas')
   await pool.query(`
@@ -33,6 +33,7 @@ const main = async () => {
         userId INT UNSIGNED NOT NULL,
         categoryId INT UNSIGNED NOT NULL,
         createdAt DATETIME DEFAULT CURRENT_TIMESTAMP, 
+        modifiedAt DATETIME ON UPDATE CURRENT_TIMESTAMP,
         FOREIGN KEY (userId) REFERENCES users(id),
         FOREIGN KEY (categoryId) REFERENCES categories(id)
     )
